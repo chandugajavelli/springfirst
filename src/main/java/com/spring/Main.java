@@ -8,8 +8,8 @@ public class Main {
 
         ApplicationContext con = new ClassPathXmlApplicationContext("AppContextConfig.xml"); //name of file doesnt matter.
        // object of Bus class in the container will be create upon executing above line when .xml file is called, obj will be created for each bean irrespective of similar class names.
-        Bus obj = (Bus) con.getBean("bus"); //can use id "bus" or Bus.class
-        obj.travel();
+       Bus obj = (Bus) con.getBean("bus"); //can use id "bus" or Bus.class
+       // obj.travel();
 
         Bus obj1 = (Bus) con.getBean("bus");
         obj1.speed= 88;
@@ -24,6 +24,10 @@ public class Main {
 
         Bus obj3 = (Bus) con.getBean("bus1"); //setter will be called from config file
         System.out.println(obj3.getSpeed());
+        obj3.travel();//reference injection
 
+        Bus obj4 = (Bus) con.getBean("bus2");
+        System.out.println(obj4.getSpeed());  //constructor injection
+        obj4.travel();
     }
 }

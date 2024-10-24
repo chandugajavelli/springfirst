@@ -10,8 +10,18 @@
 
     <bean id="bus1" class="com.spring.Bus">  <!-- package name - com.spring -->
     <property name="speed" value="60"></property><!-- setter injection -->
+    <property name="lap" ref="laptop"></property><!-- reference injection , laptop is id of below bean of laptop.class-->
     </bean>
 
     <bean id="laptop" class="com.spring.Laptop">  <!-- package name - com.spring -->
+    </bean>
+
+    <bean id="bus2" class="com.spring.Bus">  <!-- package name - com.spring -->
+    <constructor-arg name="lap" ref="laptop"></constructor-arg>
+    <constructor-arg name="speed" value="99"></constructor-arg>
+
+    <!-- <constructor-arg index="1" ref="laptop"></constructor-arg>  we can also do this way
+    <constructor-arg index="0" value="99"></constructor-arg> -->
+
     </bean>
 </beans>
