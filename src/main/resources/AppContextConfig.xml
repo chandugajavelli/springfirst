@@ -5,23 +5,30 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <!-- bean definitions here -->
-    <bean id="bus" class="com.spring.Bus" scope="prototype">  <!-- package name - com.spring -->
+    <!-- <bean id="bus" class="com.spring.Bus" scope="prototype">  package name - com.spring
     </bean>
 
-    <bean id="bus1" class="com.spring.Bus">  <!-- package name - com.spring -->
-    <property name="speed" value="60"></property><!-- setter injection -->
-    <property name="lap" ref="laptop"></property><!-- reference injection , laptop is id of below bean of laptop.class-->
+    <bean id="bus1" class="com.spring.Bus">  package name - com.spring
+    <property name="speed" value="60"></property> setter injection
+    <property name="lap" ref="laptop"></property>reference injection , laptop is id of below bean of laptop.class
+    </bean> -->
+
+    <bean id="laptop" class="com.spring.Laptop" primary="true">  <!-- package name - com.spring, primary is when 2 or more classes for autowiring byType if we mention primary then it will be executed -->
     </bean>
 
-    <bean id="laptop" class="com.spring.Laptop">  <!-- package name - com.spring -->
-    </bean>
+    <bean id="com" class="com.spring.Desktop" lazy-init="true">   <!--lazy init is the obj for this class is created when we want to use/declare in code but not at the time of container loading and it will be still singleton, prototype scope also gives us obj when we want-->
+    </bean> 
 
-    <bean id="bus2" class="com.spring.Bus">  <!-- package name - com.spring -->
-    <constructor-arg name="lap" ref="laptop"></constructor-arg>
-    <constructor-arg name="speed" value="99"></constructor-arg>
 
+    <bean id="bus2" class="com.spring.Bus" autowire = "byType">  <!-- package name - com.spring, autowire- byName,byType -->
+    <property name="speed" value="77"></property>
+    <!-- if we comment laptop bean and use byType autowire and the desktop bean id is different from com then it will match type i.e Computer and gives desktop obj -->
+    <!-- no need of below property if autowiring is used and if we metion this below property then autowiring is overrided and below will work -->
+    <!-- <property name="com" ref="desktop"></property>  u can change desktop/laptop ref to execute that req class method, no need of this property if u use autowiring-->
+    <!-- <constructor-arg name="lap" ref="laptop"></constructor-arg>
+    <constructor-arg name="speed" value="99"></constructor-arg> -->
     <!-- <constructor-arg index="1" ref="laptop"></constructor-arg>  we can also do this way
     <constructor-arg index="0" value="99"></constructor-arg> -->
-
+    
     </bean>
 </beans>

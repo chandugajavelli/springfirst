@@ -3,22 +3,32 @@ package com.spring;
 public class Bus {
 
 
-    public Laptop lap;
+    public Computer com; //by declaring interface obj we can use both laptop and desktop methods here without again changing object by passing the particular class obj ref
+    //we need not to modify the object again to use different class obj if we use interface
     public Bus(){
         System.out.println("Objecte Created");
     }
     public void travel(){
         System.out.println("travelling..");
-        lap.compile();
+        com.compile();
     }
 
     
-
-     public Bus(Laptop lap, int speed) {
-        System.out.println("constructor executed");
-        this.lap = lap;
-        this.speed = speed;
+//`@ConstructorProperties({"speed","lap"}) just for sequence
+    //  public Bus(Computer com, int speed) {
+    //     System.out.println("constructor executed");
+    //     this.com = com;
+    //     this.speed = speed;
         
+    // }
+
+
+
+    public Computer getCom() {
+        return com;
+    }
+    public void setCom(Computer com) {
+        this.com = com;
     }
 
 
@@ -31,12 +41,7 @@ public class Bus {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
-    public Laptop getLap() {
-        return lap;
-    }
-    public void setLap(Laptop lap) {
-        this.lap = lap;
-    }
+   
 
    
 
