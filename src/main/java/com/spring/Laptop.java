@@ -1,7 +1,11 @@
 package com.spring;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component("lap")
 public class Laptop implements Computer {
-    Laptop(){
+    public Laptop(){
         System.out.println("laptop obj created");
     }
 

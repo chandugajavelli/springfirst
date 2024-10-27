@@ -1,12 +1,15 @@
 package com.spring;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.spring.config.AppConfig;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
-        ApplicationContext con = new ClassPathXmlApplicationContext("AppContextConfig.xml"); //name of file doesnt matter.
+       // ApplicationContext con = new ClassPathXmlApplicationContext("AppContextConfig.xml"); //name of file doesnt matter.
        // object of Bus class in the container will be create upon executing above line when .xml file is called, obj will be created for each bean irrespective of similar class names.
       // Bus obj = (Bus) con.getBean("bus"); //can use id "bus" or Bus.class
        // obj.travel();
@@ -26,10 +29,28 @@ public class Main {
         // System.out.println(obj3.getSpeed());
         // obj3.travel();//reference injection
 
-        Bus obj4 = (Bus) con.getBean("bus2");
+      //  Bus obj4 = (Bus) con.getBean("bus2");
 
         //we can also get obj like this Bus obj4 = con.getBean("bus2",Bus.class); or Bus obj4 = con.getBean(Bus.class);
-        System.out.println(obj4.getSpeed());  //constructor injection
-        obj4.travel();
+       // System.out.println(obj4.getSpeed());  //constructor injection
+      //  obj4.travel();
+
+
+      //by java based config
+
+      ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+      Desktop desk = context.getBean(Desktop.class);
+      desk.compile();
+
+      Desktop desk1 = context.getBean(Desktop.class);
+      desk1.compile();
+
+      Bus obj1 = (Bus) context.getBean("bus");
+        
+       System.out.println(obj1.speed);
+       obj1.travel();
+
+
+
     }
 }
